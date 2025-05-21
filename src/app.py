@@ -13,6 +13,7 @@ from pathlib import Path
 
 app = FastAPI(title="Mergington High School API",
               description="API for viewing and signing up for extracurricular activities")
+app.mount("/", StaticFiles(directory="src/static", html=True), name="static")
 
 # Mount the static files directory
 current_dir = Path(__file__).parent
@@ -98,15 +99,19 @@ def signup_for_activity(activity_name: str, email: str):
     if activity_name not in activities:
         raise HTTPException(status_code=404, detail="Activity not found")
 
-    # Get the specificy activity
+    # Get the specific activity
     activity = activities[activity_name]
 
     # Validate student is not already signed up
-    if email in activity ["participants"]:
+    if email in activity["participants"]:
         raise HTTPException(status_code=400, detail="Student is already signed up")
+
+    # Validate max participants not exceeded
+    if len(activity["participants"]) >= activity["max_participants"]:
+        raise HTTPException(status_code=400, detail="Activity is full")
 
     # Add student
     activity["participants"].append(email)
     return {"message": f"Signed up {email} for {activity_name}"}
-    
-    
+
+
