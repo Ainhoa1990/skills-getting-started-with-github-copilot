@@ -167,3 +167,52 @@ footer {
   padding: 20px;
   color: #666;
 }
+
+.participants-section {
+  margin-top: 16px;
+  padding: 14px 14px 10px 14px;
+  background: linear-gradient(90deg, #e3eafc 80%, #c5cae9 100%);
+  border-radius: 8px;
+  border: 1.5px solid #b3b8d1;
+  box-shadow: 0 2px 8px rgba(26,35,126,0.06);
+  transition: box-shadow 0.2s;
+}
+
+.participants-section:hover {
+  box-shadow: 0 4px 16px rgba(26,35,126,0.13);
+}
+
+.participants-section strong {
+  color: #1a237e;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.participants-list {
+  margin: 10px 0 0 22px;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.participants-list li {
+  margin-bottom: 5px;
+  color: #3949ab;
+  font-size: 15px;
+  position: relative;
+  padding-left: 22px;
+}
+
+.participants-list li::before {
+  content: '\1F464'; /* Unicode icon for user */
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 16px;
+  color: #5c6bc0;
+}
+
+.participants-section em {
+  color: #888;
+  font-size: 14px;
+  margin-left: 4px;
+}
